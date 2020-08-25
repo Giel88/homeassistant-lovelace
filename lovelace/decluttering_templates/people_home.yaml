@@ -1,0 +1,37 @@
+people_home:
+  card:
+    type: custom:button-card 
+    show_name: false
+    show_state: false
+    show_entity_picture: true
+    entity_picture: >
+      [[[
+        if (states['person.mandy_van_gelder'].state == 'home' && states['person.giel_blankestijn'].state == 'home')
+          return '/local/both_home.png';
+        else if (states['person.mandy_van_gelder'].state == 'home')
+          return '/local/mandy_home.png';
+        else if (states['person.giel_blankestijn'].state == 'home')
+          return '/local/giel_home.png';
+        else
+          return '/local/noone_home.png';       
+      ]]]    
+    entity: "[[entity_id]]"
+    tap_action:
+      action: navigate
+      navigation_path: mandy
+    styles:    
+      card:
+        - background-color: transparent
+        - box-shadow: none
+        - margin: 0 -16px
+      grid:
+        - grid-template-areas: '"i"'
+        - grid-template-columns: 1fr
+      img_cell:
+        - width: 80px
+      entity_picture:
+        - width: 80px
+
+
+        
+      

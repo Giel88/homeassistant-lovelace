@@ -1,0 +1,8 @@
+hk-vertical-stack:
+  card:
+    type: custom:vertical-stack-in-card
+    cards:
+      - type: entities
+        entity: '[[entity_1]]'
+      - type: entities
+        entity: '[[entity_2]]'

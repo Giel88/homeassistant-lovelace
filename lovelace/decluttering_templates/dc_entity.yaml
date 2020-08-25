@@ -1,0 +1,45 @@
+dc_entity:
+  default:
+    - show_entity_picture: false
+    - show_icon: true
+    - show_state: true
+  card:
+    type: custom:button-card
+    name: "[[name]]"
+    icon: "mdi:[[icon]]"
+    show_icon: '[[show_icon]]'
+    entity: "[[entity_id]]"
+    show_state: '[[show_state]]'
+    show_entity_picture: '[[show_entity_picture]]'
+    entity_picture: '[[entity_picture]]'     
+    tap_action:
+      action: more-info
+      #service: homeassistant.turn_on
+      #service_data:
+      #  entity_id: entity
+    styles:    
+      card:
+        - padding: 16px
+        - height: 75px
+      grid:
+        - grid-template-areas: '"i n s"'
+        - grid-template-columns: min-content min-content
+        - grid-template-rows: 1fr
+      img_cell:
+        - width: 40px
+        - justify-self: start   
+        - margin-right: 8px
+      icon:
+        - width: 24px
+      entity_picture:
+        - justify-self: start
+        - border-radius: 25px
+        - width: 40px
+        - height: 40px        
+      name:
+        - justify-self: start
+      state:
+        - justify-self: end
+
+        
+      

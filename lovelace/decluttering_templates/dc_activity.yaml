@@ -1,0 +1,64 @@
+dc_activity:
+  default:
+    - show_state: false
+    - width: 100%
+  card:
+    type: custom:button-card
+    name: '[[name]]'
+    icon: '[[icon]]'
+    entity: '[[entity_id]]'
+    #tap_action:
+    #  action: call-service
+    #  service: input_select.select_option
+    #  service_data:
+    #    entity_id: input_select.harmony_activity
+    #    option: "[[name]]"
+    styles:
+      card:
+        - height: 120px        
+        - background: 'var(--accent-color)' 
+        - padding: 16px
+        - box-shadow: 0px 5px 10px 0px rgba(99, 56, 255, 0.2)
+        - height: 120px        
+        - margin-bottom: 24px
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content      
+      name:
+        - text-align: start
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 16px
+        - color: 'var(--paper-item-text-active-color)'                
+      state:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: 'var(--paper-item-secondary-text-active-color)'                
+      label:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: 'var(--paper-item-secondary-text-active-color)'        
+      img_cell:
+        - justify-content: start
+        - align-self: end
+        - align-items: flex-end
+        - padding-bottom: 16px
+      icon:
+        - height: 24px
+        - width: 30px
+        - margin-left: '[[icon_offset]]'
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - box-shadow: none   
+            - background: 'var(--paper-card-background-color)'
+          name:
+            - color: 'var(--paper-item-text-color)'            
+          state: 
+            - color: 'var(--paper-item-secondary-text-color)'
+          label:
+            - color: 'var(--paper-item-secondary-text-color)'

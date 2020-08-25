@@ -1,0 +1,203 @@
+# lovelace_gen
+
+- title: Dashboard
+  icon: mdi:speedometer
+  path: dashboard
+  cards:
+    
+    - type: vertical-stack
+      cards:
+ 
+        - type: custom:decluttering-card
+          template: welcome
+    
+        - type: custom:layout-card
+          layout: grid
+          gridrows: 32px 32px
+          gridcols: 32px auto 80px
+          gridgap: 20
+          cards:
+            - type: custom:decluttering-card
+              template: icon
+              gridrow: 1 / 1
+              gridcol: 1 / 1
+              variables:
+                - icon: calendar              
+            - type: custom:decluttering-card
+              template: today
+              gridrow: 1 / 1
+              gridcol: 2 / 2
+              variables:
+                - sensor: states.sensor.date.state              
+            - type: custom:decluttering-card
+              template: icon
+              gridrow: 2 / 2
+              gridcol: 1 / 1
+              variables:
+                - icon: sun                
+            - type: custom:decluttering-card
+              template: today
+              gridrow: 2 / 2
+              gridcol: 2 / 2
+              variables:
+                - sensor: states.sensor.weather.state
+            - type: custom:decluttering-card
+              template: people_home
+              gridrow: 1 / 3
+              gridcol: 3 / 3
+              variables:
+                - entity_id: people.mandy_van_gelder
+     
+        - type: custom:mini-graph-card
+          entities:
+            - entity: sensor.motion_sensor_temperature
+              color: "#6236FF"
+              name: Temperature
+              show_state: true
+            #- entity: sensor.humidity
+            #  color: "#6236FF"
+            #  name: Humidity
+            #  show_state: true
+          show:
+            fill: false
+            state: true
+            legend: false
+          line_width: 2
+          name: Temperature
+          debug_cardmod: true      
+          align_icon: left
+          align_header: left
+          icon: far:thermometer-half
+          style: |
+            ha-card {
+              background: transparent;
+              box-shadow: none;
+              padding-top: 56px !important;
+            }
+            .header {
+              padding-bottom: 8px !important;
+            }
+            .graph {
+              padding: 0px
+            }
+            .states {
+              padding-bottom: 0px;
+              justify-content: start !important;
+            }            
+            .state__value {
+              font-size: 24px !important;
+              font-weight: 500 !important;              
+            }
+            .state__uom {
+              font-size: 24px !important;
+              font-weight: 500 !important;
+              margin-top: 0px !important;
+              line-height: 1.2em !important;
+              opacity: 1 !important;              
+            }
+            
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Scenes
+            
+        - type: custom:swipe-card
+          card_width: '60%'
+          parameters:
+            centeredSlides: false
+            slidesPerView: 'auto'
+            spaceBetween: 8
+            slidesOffsetBefore: 16
+          cards:
+            - type: custom:decluttering-card
+              template: dc_button_scene
+              variables:
+                - entity_id: input_boolean.hue_normal
+                - name: Normal
+                - icon: lamp
+                - icon_offset: -3px
+            - type: custom:decluttering-card
+              template: dc_button_scene
+              variables:
+                - entity_id: input_boolean.hue_moody
+                - name: Moody
+                - icon: glass-cheers
+            - type: custom:decluttering-card
+              template: dc_button_scene
+              variables:
+                - entity_id: input_boolean.hue_candlelight
+                - name: Candlelight
+                - icon: candle-holder                
+                
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Rooms                
+                
+        - type: custom:swipe-card
+          card_width: '120px'
+          parameters:
+            centeredSlides: false
+            slidesPerView: 'auto'
+            spaceBetween: 8
+            slidesOffsetBefore: 16
+          cards:
+            - type: custom:decluttering-card
+              template: dc_button_room
+              variables:
+                - name: Living room
+                - path: livingroom
+                - icon: couch
+            - type: custom:decluttering-card
+              template: dc_button_room
+              variables:
+                - name: Hallway
+                - path: hallway                
+                - icon: door-closed                
+            - type: custom:decluttering-card
+              template: dc_button_room
+              variables:
+                - name: Bedroom
+                - path: bedroom                
+                - icon: bed-empty                
+            - type: custom:decluttering-card
+              template: dc_button_room
+              variables:
+                - name: Guestroom
+                - path: guestroom                
+                - icon: bed-empty
+                
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Appliances                   
+                
+        - type: custom:swipe-card
+          card_width: '120px'
+          parameters:
+            centeredSlides: false
+            slidesPerView: 'auto'
+            spaceBetween: 8
+            slidesOffsetBefore: 16
+          cards:
+            - type: custom:decluttering-card
+              template: dc_button_vacuum
+              variables:
+                - name: Vacuum
+                - entity_id: vacuum.xiaomi_vacuum_cleaner
+                - icon: vacuum-robot
+                - icon_offset: -2px
+            - type: custom:decluttering-card
+              template: dc_button_humidifier
+              variables:
+                - name: Humidifier
+                - entity_id: fan.air_humidifier
+                - icon: tint
+                - icon_offset: -5px                
+            - type: custom:decluttering-card
+              template: dc_button_device
+              variables:
+                - name: Fan
+                - entity_id: input_boolean.fan
+                - icon: fan
+                - icon_offset: -2px                

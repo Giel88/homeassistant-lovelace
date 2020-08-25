@@ -1,0 +1,431 @@
+dc_button_scene:
+  default:
+    - width: 100%
+  card:
+    #type: custom:card-templater
+    #card:       
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    name: '[[name]]'
+    icon: 'far:[[icon]]'
+    hold_action:
+      action: more-info
+    styles:
+      card:
+        - height: 120px        
+        - background: >
+            [[[
+              if ('[[name]]' == 'Normal')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";        
+              else if ('[[name]]' == 'Moody')
+                return "linear-gradient(45deg, rgba(253,47,134,1) 0%, rgba(236,129,67,1) 100%)";
+              else if ('[[name]]' == 'Candlelight')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";
+              else if ('[[name]]' == 'Nightlight')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";
+              else if ('[[name]]' =='Pink')
+                return "linear-gradient(45deg, rgba(255,0,217,1) 0%, rgba(255,112,91,1) 100%)";
+            ]]]  
+        - padding: 16px
+        - margin-bottom: 32px        
+        - justify-content: start
+        - box-shadow: >
+            [[[
+              if ('[[name]]' == 'Normal')
+                return "0px 5px 10px 0px rgba(212,133,69,0.4)";       
+              else if ('[[name]]' == 'Moody')
+                return "0px 5px 10px 0px rgba(193, 66, 44, 0.4)"; 
+              else if ('[[name]]' == 'Candlelight')
+                return "0px 5px 10px 0px rgba(212,133,69,0.4";
+              else if ('[[name]]' == 'Nightlight')
+                return "0px 5px 10px 0px rgba(212,133,69,0.4)";
+              else if ('[[name]]' =='Pink')
+                return "0px 5px 10px 0px rgba(226, 0, 151, 0.4)";
+            ]]]           
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content      
+      name:
+        - text-align: start
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 16px
+        - color: 'var(--paper-item-text-active-color)'
+      state:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: 'var(--paper-item-secondary-text-active-color)'        
+      img_cell:
+        - justify-content: start
+        - align-self: end
+        - align-items: flex-end
+        - padding-bottom: 16px
+      icon:
+        - height: 24px
+        - width: 30px
+        - margin-left: '[[icon_offset]]'
+        - color: 'var(--paper-item-icon-active-color)'        
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - background: 'var(--paper-card-background-color)'
+            - box-shadow: none
+          name:
+            - color: 'var(--paper-item-text-color)'
+          state:
+            - color: 'var(--paper-item-secondary-text-color)'
+          icon:
+            - color: 'var(--paper-item-icon-color)'
+            
+dc_button_room:
+  default:
+    - width: 100%
+    - margin-left: 0px   
+  card:
+    #type: custom:card-templater
+    #card:       
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    show_state: false
+    name: '[[name]]'
+    icon: 'far:[[icon]]'
+    tap_action:
+      action: navigate
+      navigation_path: '[[path]]'      
+    hold_action:
+      action: more-info
+    styles:
+      card:
+        - height: 120px        
+        - padding: 16px
+        - margin-bottom: 32px
+        - background: >
+            [[[
+              if ('[[name]]' == 'Living room' && (states['light.living_room'].state == 'on' || states['sensor.current_activity'].state != 'PowerOff'))
+                return "var(--accent-color)"
+              else if ('[[name]]' == 'Hallway' && states['light.hallway'].state == 'on')
+                return "var(--accent-color)"
+              else if ('[[name]]' == 'Bedroom' && states['light.bedroom'].state == 'on')
+                return "var(--accent-color)"
+              else if ('[[name]]' == 'Guestroom' && states['light.guestroom'].state == 'on')
+                return "var(--accent-color)"
+              else
+                return "var(--card-background-color)"                
+            ]]]
+        - box-shadow: >
+            [[[
+              if ('[[name]]' == 'Living room' && (states['light.living_room'].state == 'on' || states['sensor.current_activity'].state != 'PowerOff'))
+                return "0px 5px 10px 0px rgba(99, 56, 255, 0.4)"
+              else if ('[[name]]' == 'Hallway' && states['light.hallway'].state == 'on')
+                return "0px 5px 10px 0px rgba(99, 56, 255, 0.4)"
+              else if ('[[name]]' == 'Bedroom' && states['light.bedroom'].state == 'on')
+                return "0px 5px 10px 0px rgba(99, 56, 255, 0.4)"
+              else if ('[[name]]' == 'Guestroom' && states['light.guestroom'].state == 'on')
+                return "0px 5px 10px 0px rgba(99, 56, 255, 0.4)"
+              else
+                return "none"                
+            ]]]
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content      
+      name:
+        - text-align: start
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 16px
+        - color: >
+            [[[
+              if ('[[name]]' == 'Living room' && (states['light.living_room'].state == 'on' || states['sensor.current_activity'].state != 'PowerOff'))
+                return "var(--paper-item-text-active-color)"
+              else if ('[[name]]' == 'Hallway' && states['light.hallway'].state == 'on')
+                return "var(--paper-item-text-active-color)"
+              else if ('[[name]]' == 'Bedroom' && states['light.bedroom'].state == 'on')
+                return "var(--paper-item-text-active-color)"
+              else if ('[[name]]' == 'Guestroom' && states['light.guestroom'].state == 'on')
+                return "var(--paper-item-text-active-color)"
+              else
+                return "var(--paper-item-text-color)"
+            ]]]       
+      state:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: >
+            [[[
+              if ('[[name]]' == 'Living room' && (states['light.living_room'].state == 'on' || states['sensor.current_activity'].state != 'PowerOff'))
+                return "var(--paper-item-secondary-text-active-color)"
+              else if ('[[name]]' == 'Hallway' && states['light.hallway'].state == 'on')
+                return "var(--paper-item-secondary-text-active-color)"
+              else if ('[[name]]' == 'Bedroom' && states['light.bedroom'].state == 'on')
+                return "var(--paper-item-secondary-text-active-color)"
+              else if ('[[name]]' == 'Guestroom' && states['light.guestroom'].state == 'on')
+                return "var(--paper-item-text-active-color)"
+              else
+                return "var(--paper-item-secondary-text-color)"
+            ]]]           
+      img_cell:
+        - justify-content: start
+        - align-self: end
+        - align-items: flex-end
+        - padding-bottom: 16px
+      icon:
+        - height: 24px
+        - width: 30px        
+        - margin-left: '[[icon_offset]]'
+        - color: >
+            [[[
+              if ('[[name]]' == 'Living room' && (states['light.living_room'].state == 'on' || states['sensor.current_activity'].state != 'PowerOff'))
+                return "var(--paper-item-icon-active-color)"
+              else if ('[[name]]' == 'Hallway' && states['light.hallway'].state == 'on')
+                return "var(--paper-item-icon-active-color)"
+              else if ('[[name]]' == 'Bedroom' && states['light.bedroom'].state == 'on')
+                return "var(--paper-item-icon-active-color)"
+              else if ('[[name]]' == 'Guestroom' && states['light.guestroom'].state == 'on')
+                return "var(--paper-item-icon-active-color)"
+              else
+                return "var(--paper-item-icon-color)"
+            ]]]      
+            
+            
+dc_button_device:
+  default:
+    - margin-left: 0px   
+  card:
+    #type: custom:card-templater
+    #card:       
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    name: '[[name]]'
+    icon: 'far:[[icon]]'
+    show_state: true
+    show_label: false
+    styles:        
+    hold_action:
+      action: more-info
+    styles:
+      card:
+        - height: 120px        
+        - background: 'var(--accent-color)' 
+        - padding: 16px
+        - box-shadow: 0px 5px 10px 0px rgba(99, 56, 255, 0.4)
+        - height: 120px        
+        - margin-bottom: 24px
+      grid:
+        - grid-template-areas: '"i" "n" "l" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content      
+      name:
+        - text-align: start
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 16px
+        - color: var(--paper-item-text-active-color)
+      state:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: var(--paper-item-secondary-text-active-color)      
+      label:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px         
+      img_cell:
+        - justify-content: start
+        - align-self: end
+        - align-items: flex-end
+        - padding-bottom: 16px
+      icon:
+        - height: 24px
+        - width: 30px
+        - margin-left: '[[icon_offset]]'
+        - color: var(--paper-item-icon-active-color)        
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - box-shadow: none   
+            - background: 'var(--paper-card-background-color)'
+          name: 
+            - color: 'var(--paper-item-text-color)'            
+          state: 
+            - color: 'var(--paper-item-secondary-text-color)'
+          label: 
+            - color: 'var(--paper-item-secondary-text-color)'            
+          icon:
+            - color: 'var(--paper-item-icon-color)'
+            
+dc_button_humidifier:
+  default:
+    - margin-left: 0px   
+  card:
+    #type: custom:card-templater
+    #card:       
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    name: '[[name]]'
+    icon: 'far:[[icon]]'
+    show_state: false
+    show_label: true
+    label: >
+      [[[
+        var humidity = states['fan.air_humidifier'].attributes.humidity;      
+        if ('[[entity_id]]' == 'fan.air_humidifier' && states['fan.air_humidifier'].state == 'on')
+          return humidity + '%';
+        else
+          return "off";
+      ]]]    
+    styles:        
+    hold_action:
+      action: more-info
+    styles:
+      card:
+        - height: 120px        
+        - background: 'var(--accent-color)' 
+        - padding: 16px
+        - box-shadow: 0px 5px 10px 0px rgba(99, 56, 255, 0.4)
+        - height: 120px        
+        - margin-bottom: 24px
+      grid:
+        - grid-template-areas: '"i" "n" "l" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content      
+      name:
+        - text-align: start
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 16px
+        - color: 'var(--paper-item-text-active-color)'
+      state:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: 'var(--paper-item-secondary-text-active-color)'
+      label:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: 'var(--paper-item-secondary-text-active-color)'
+      img_cell:
+        - justify-content: start
+        - align-self: end
+        - align-items: flex-end
+        - padding-bottom: 16px
+      icon:
+        - height: 24px
+        - width: 30px
+        - margin-left: '[[icon_offset]]'
+        - color: 'var(--paper-item-icon-active-color)'        
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - box-shadow: none   
+            - background: 'var(--paper-card-background-color)'
+          name: 
+            - color: 'var(--paper-item-text-color)'           
+          state: 
+            - color: 'var(--paper-item-secondary-text-color)'    
+          label:
+            - color: 'var(--paper-item-secondary-text-color)'    
+          icon:
+            - color: 'var(--paper-item-icon-color)'          
+            
+dc_button_vacuum:
+  default:
+    - margin-left: 0px   
+  card:
+    #type: custom:card-templater
+    #card:       
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    name: '[[name]]'
+    icon: 'far:[[icon]]'
+    show_state: true
+    tap_action:        
+      action: call-service
+      service: >
+        [[[
+          if (states['vacuum.xiaomi_vacuum_cleaner'].state == 'docked')
+            return "vacuum.send_command";
+          else 
+            return "vacuum.return_to_base";
+        ]]]
+      service_data: 
+        entity_id: '[[entity_id]]'
+        command: >
+          [[[
+            if (states['vacuum.xiaomi_vacuum_cleaner'].state == 'docked')
+              return "app_segment_clean";
+          ]]]              
+        params: >
+          [[[
+            if (states['vacuum.xiaomi_vacuum_cleaner'].state == 'docked')
+              return [2,16,17];
+          ]]]
+    styles:
+      card:
+        - height: 120px        
+        - background: >
+            [[[
+              if (states['vacuum.xiaomi_vacuum_cleaner'].state != 'docked')
+                return "var(--accent-color)";
+              else
+                return "var(--card-background-color)";
+            ]]]                  
+        - padding: 16px
+        - box-shadow: >
+            [[[
+              if (states['vacuum.xiaomi_vacuum_cleaner'].state == 'docked')
+                return "none";
+              else 
+                return "0px 5px 10px 0px rgba(99, 56, 255, 0.4)";
+            ]]]
+        - height: 120px        
+        - margin-bottom: 24px
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content      
+      name:
+        - text-align: start
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 16px
+        - color: >
+            [[[
+              if (states['vacuum.xiaomi_vacuum_cleaner'].state != 'docked')
+                return "var(--paper-item-text-active-color)";
+              else
+                return "var(--paper-item-text-color)";              
+            ]]]         
+      state:
+        - text-align: start
+        - justify-self: start
+        - font-size: 16px
+        - color: >
+            [[[
+              if (states['vacuum.xiaomi_vacuum_cleaner'].state != 'docked')
+                return "var(--paper-item-secondary-text-active-color)";
+              else
+                return "var(--paper-item-secondary-text-color)";              
+            ]]]           
+      img_cell:
+        - justify-content: start
+        - align-self: end
+        - align-items: flex-end
+        - padding-bottom: 16px
+      icon:
+        - height: 24px
+        - width: 30px
+        - margin-left: '[[icon_offset]]'
+        - color: >
+            [[[
+              if (states['vacuum.xiaomi_vacuum_cleaner'].state != 'docked')
+                return "var(--paper-item-icon-active-color)";
+              else
+                return "var(--paper-item-icon-color)";              
+            ]]]          

@@ -1,0 +1,67 @@
+dc_light:
+  default:
+    - width: 100%
+  card:
+    #type: custom:card-templater
+    #card:       
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    name: '[[name]]'
+    icon: mdi:lightbulb 
+    show_state: true
+    hold_action:
+      action: more-info
+    styles:
+      card:
+        - height: 150px        
+        - background: >
+            [[[
+              if ('[[entity_id]]' == 'light.guestroom')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";
+              else if ('[[entity_id]]' == 'light.bedroom')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";                 
+              else if (states['sensor.current_scene'].state == 'Normal')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";
+              else if (states['sensor.current_scene'].state == 'Moody')
+                return "linear-gradient(45deg, rgba(253,47,134,1) 0%, rgba(236,129,67,1) 100%)";
+              else if (states['sensor.current_scene'].state == 'Candlelight')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";
+              else if (states['sensor.current_scene'].state == 'Nightight')
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";
+              else if (states['sensor.current_scene'].state == 'Pink')
+                return "linear-gradient(45deg, rgba(255,0,217,1) 0%, rgba(255,112,91,1) 100%)";
+              else
+                return "linear-gradient(45deg, rgba(212,133,69,1) 0%, rgba(221,158,106,1) 100%)";                
+            ]]]           
+        - padding: 20px
+        - justify-content: start
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - margin-right: calc(100% - 16px)
+      name:
+        - justify-self: start
+        - font-weight: bold
+        - color: white        
+      state:
+        - justify-self: start
+        - color: white
+      icon: 
+        - color: white
+        - width: 40px
+    state:
+      - value: 'off'
+        icon: mdi:lightbulb-outline        
+        styles:
+          card:
+            - background: 'var(--paper-card-background-color)'
+          name:
+            - color: 'var(--text-color)' 
+          state:
+            - color: 'var(--text-color)'             
+          icon:
+            - color: 'var(--text-color)'

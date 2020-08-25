@@ -1,0 +1,11 @@
+title: Settings
+decluttering_templates: !include_dir_merge_named lovelace/decluttering_templates
+custom_header: !include lovelace/custom_header.yaml
+views: !include_dir_merge_list lovelace/views/settings
+
+swipe_nav: 
+#  wrap: true
+  skip_tabs: 3
+#  animate: fade
+#  prevent_default: true 
+#  swipe_amount: 30

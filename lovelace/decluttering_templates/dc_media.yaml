@@ -1,0 +1,15 @@
+dc_media:
+  default:
+  card:
+    type: conditional
+    conditions:
+      - entity: media_player.shield
+        state_not: unavailable
+    card:    
+      type: custom:mini-media-player
+      entity: '[[entity]]'
+      hide:
+        volume: true
+        source: true
+        power: true
+        name: true

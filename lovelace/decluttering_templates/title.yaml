@@ -1,0 +1,107 @@
+title:
+  card:
+    type: markdown
+    style:
+      .: |
+        ha-card {
+         box-shadow: none;
+         background: none;
+        }
+      ha-markdown:
+        $: |
+         h2 { 
+          font-size: 24px !important;
+          font-weight: 500 !important;
+          margin-block-end: 0px !important;
+          margin-block-start: 0px !important;          
+         }
+         p { 
+          font-size: 16px !important;
+          font-weight: regular !important;
+          margin-block-end: 0px !important;
+          margin-block-start: 0px !important;              
+         }            
+    content: |
+      <h2>[[title]]</h2>
+
+
+welcome:
+  card:
+    type: markdown
+    style:
+      .: |
+        ha-card {
+         box-shadow: none;
+         background: none;
+         margin-top: 40px;
+         margin-bottom: 40px;
+        }
+      ha-markdown:
+        $: |
+         h2 { 
+          font-size: 24px !important;
+          font-weight: 500 !important;
+          margin-block-end: 0px !important;
+          margin-block-start: 8px !important;          
+         }
+         p { 
+          font-size: 16px !important;
+          font-weight: regular !important;
+          margin-block-end: 0px !important;
+          margin-block-start: 0px !important;              
+         }
+    content: |
+      {% if now().strftime("%H")|int < 12 %}
+        <p>Good morning</p>
+      {% elif now().strftime("%H")|int < 18 %}
+        <p>Good afternoon</p> 
+      {% else %}
+        <p>Good evening</p>
+      {% endif %} 
+      <h2>{{user}}</h2>
+      
+icon:
+  card:
+    type: markdown
+    style:
+      .: |   
+        ha-card {
+          box-shadow: none;
+          background: none;
+          padding: 0 0 0 4px;      
+          margin: 0px;
+          opacity: 0.5;          
+        }
+        ha-card > ha-markdown {
+          padding: 0 16px !important;
+        }    
+    content: |
+      <ha-icon icon="far:[[icon]]"></ha-icon>      
+      
+today:
+  card:
+    type: markdown
+    style:
+      .: |   
+        ha-card {
+          box-shadow: none;
+          background: none;
+          padding: 2 0 0 8px;
+          margin: 0px;          
+          opacity: 0.5;
+        }
+        ha-card > ha-markdown {
+          padding: 0 24px !important;
+        }        
+      ha-markdown:
+        $: |
+          p { 
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            margin-block-end: 0px !important;
+            margin-block-start: 0px !important;              
+          }            
+    content: |
+      <p>{{ [[sensor]] | title }}</p>
+      
+

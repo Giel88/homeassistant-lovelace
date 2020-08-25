@@ -1,0 +1,53 @@
+# lovelace_gen
+
+- title: Mandy
+  visible: false
+  icon: mdi:account
+  path: mandy
+  cards:
+
+    - type: vertical-stack
+      cards:
+        
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 50%
+          justify_content: start
+          cards:
+            - type: custom:decluttering-card
+              template: dc_section
+              variables:
+                - name: Mandy
+                - entity_id: person.mandy_van_gelder
+                - back: dashboard
+                
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 100%
+          justify_content: start
+          cards:
+            - type: custom:vertical-stack-in-card
+              cards:            
+                - type: custom:decluttering-card 
+                  template: dc_entity
+                  variables:
+                    - entity_id: person.mandy_van_gelder
+                    - name: Mandy
+                    - entity_picture: /local/mandy.jpg
+                    - show_entity_picture: true
+                    - show_icon: false
+                    - show_state: true
+                - type: history-graph
+                  entities:
+                   - person.mandy_van_gelder
+               
+            - type: custom:decluttering-card 
+              template: dc_map
+              variables:
+                - entity_id: person.mandy_van_gelder
+                - name: Mandy
+                                        
+                             
+
+                   
+                      

@@ -1,0 +1,66 @@
+# lovelace_gen
+
+- title: Settings
+  icon: mdi:cog
+  visible: true  
+  path: settings
+  cards:
+
+    - type: vertical-stack
+      cards:
+      
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Automations  
+            
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: entities
+              show_header_toggle: false
+              entities:                
+                - input_boolean.vacuum
+                - input_boolean.lamps_always_on 
+                
+        - type: entities
+          show_header_toggle: false
+          show_name: false
+          entities:
+            - input_number.sunlight
+                
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Booleans  
+            
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: entities
+              show_header_toggle: false            
+              entities:
+                - input_boolean.hue_normal
+                - input_boolean.hue_moody
+                - input_boolean.hue_candlelight
+                - input_boolean.hue_nightlight     
+
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: entities
+              show_header_toggle: false
+              entities:                
+                - sensor.current_xy_color
+                - var.midden_last_xy
+                - sensor.current_brightness
+                - var.midden_last_brightness
+              
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: entities
+              show_header_toggle: false            
+              entities:               
+                - input_boolean.harmony_television
+                - input_boolean.harmony_xbox_one
+                - input_boolean.harmony_radio
+                - input_boolean.harmony_listen_to_music
+                - input_boolean.harmony_bedtime
+            

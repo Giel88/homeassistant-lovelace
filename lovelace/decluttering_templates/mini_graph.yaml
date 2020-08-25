@@ -1,0 +1,39 @@
+mini_graph:
+  default:
+    - aspect_ratio: "4/3"  
+  card:
+    type: custom:mini-graph-card
+    entities:
+      - '[[entity_id]]'
+    line_color: '[[color]]'
+    line_width: 8
+    font_size: 75
+    animate: true
+    name: "[[name]]"
+    align_icon: left
+    align_header: left
+    icon: 'mdi:[[icon]]'
+    
+graph:
+  default:
+    - aspect_ratio: "4/3"  
+  card:
+    type: custom:mini-graph-card
+    entities:
+      - '[[entity_id]]'
+    line_color: '[[color]]'
+    show:
+      fill: false
+    line_width: 2
+    name: "[[name]]"
+    align_icon: left
+    align_header: left
+    icon: 'mdi:[[icon]]'
+    style: |
+      ha-card {
+        background: transparent;
+        box-shadow: none;
+        padding: 0px;
+        margin: 0px;
+      }    
+  

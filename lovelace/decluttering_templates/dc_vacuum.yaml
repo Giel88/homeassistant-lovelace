@@ -1,0 +1,53 @@
+dc_vacuum:
+  defaults:
+    - area: vacuum.start
+  card:
+    type: custom:button-card
+    name: "[[name]]"
+    icon: "mdi:[[icon]]"
+    area: "[[area]]"
+    show_state: "[[show_state]]"
+    entity: "[[entity_id]]"
+    tap_action:
+      action: navigate
+      navigation_path: vacuum           
+      service_data:
+        entity_id: '[[entity_id]]'                 
+    hold_action:        
+      action: call-service
+      service: >
+        [[[
+          if (states['vacuum.xiaomi_vacuum_cleaner'].state == 'docked')
+            return "script.turn_on";
+          else 
+            return "vacuum.return_to_base";
+        ]]]
+      service_data:
+        entity_id: >
+          [[[
+            if (states['vacuum.xiaomi_vacuum_cleaner'].state == 'docked')
+              return "[[area]]";
+            else 
+              return "vacuum.xiaomi_vacuum_cleaner";
+          ]]] 
+    styles:    
+      card:
+        - padding: 16px
+        - height: 75px
+      grid:
+        - grid-template-areas: '"i n s"'
+        - grid-template-columns: min-content min-content
+        - grid-template-rows: 1fr
+      img_cell:
+        - width: 40px
+        - justify-self: start   
+        - margin-right: 8px
+      icon:
+        - width: 24px
+      name:
+        - justify-self: start
+      state:
+        - justify-self: end
+
+        
+      

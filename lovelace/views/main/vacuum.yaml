@@ -1,0 +1,77 @@
+# lovelace_gen
+
+- title: Vacuum
+  visible: false
+  icon: mdi:robot-vacuum
+  path: vacuum
+  cards:    
+    - type: vertical-stack
+      cards:
+        
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 50%
+          justify_content: start
+          cards:
+            - type: custom:decluttering-card
+              template: dc_section
+              variables:
+                - name: Vacuum
+                - entity_id: vacuum.xiaomi_vacuum_cleaner
+                - back: home
+           
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 50%
+          justify_content: start
+          cards:
+            - type: custom:decluttering-card
+              template: dc_vacuum
+              variables:
+                - name: Litter box
+                - icon: cat
+                - show_state: false
+                - area: script.vacuum_frontdoor
+            - type: custom:decluttering-card
+              template: dc_vacuum
+              variables:
+                - name: Hallway
+                - icon: door-open
+                - show_state: false
+                - area: script.vacuum_hallway    
+                
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 100%
+          justify_content: start
+          cards:                    
+            - type: custom:xiaomi-vacuum-map-card
+              entity: vacuum.xiaomi_vacuum_cleaner
+              map_image: '/local/map-transparent-01.png'
+              default_mode: predefined_zones
+              zones:
+                - [[20100, 13250, 23075, 17050]]                      
+                - [[24500, 13250, 26750, 16800]]                                   
+                - [[23075, 13250, 24500, 19250]]
+                - [[21000, 19250, 26750, 26500]]                
+              calibration_points:
+                - vacuum:
+                    x: 21092
+                    y: 26389
+                  map:
+                    x: 510
+                    y: 86
+                - vacuum:
+                    x: 21092
+                    y: 13289
+                  map:
+                    x: 510
+                    y: 1546
+                - vacuum:
+                    x: 26542
+                    y: 13289
+                  map:
+                    x: 1111
+                    y: 1546                        
+                    
+                      

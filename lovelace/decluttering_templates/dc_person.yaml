@@ -1,0 +1,46 @@
+dc_person:
+  default:
+    - aspect_ratio: "4/3"
+  card:
+    type: custom:button-card
+    entity: '[[entity_id]]'
+    name: "[[name]]"
+    show_state: true
+    #aspect_ratio: "[[aspect_ratio]]"
+    show_entity_picture: true
+    entity_picture: '[[entity_picture]]'
+    tap_action:
+      action: navigate
+      navigation_path: '[[name]]'  
+    styles:
+      card:
+        - padding: 20px
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - margin-right: calc(100% - 40px)      
+      name:
+        - justify-self: start
+#        - padding-left: 16px
+        - font-weight: bold
+      state:
+        - justify-self: start
+#        - padding-left: 16px
+        - opacity: 50%
+      icon: 
+        - color: var(--button-card-light-color)
+      entity_picture:
+        - justify-self: start        
+        - margin: 16px 0px 16px 0px
+        - border-radius: 25px
+        - width: 50px
+        - height: 50px
+    state:
+      - value: 'not_home'
+        styles:
+          icon:
+            - filter: grayscale(100%) opacity(50%)            

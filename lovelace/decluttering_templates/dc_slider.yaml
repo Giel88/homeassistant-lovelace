@@ -1,0 +1,8 @@
+dc_slider:
+  card:
+    type: entities
+    entities:
+      - input_number.humidity
+
+        
+      

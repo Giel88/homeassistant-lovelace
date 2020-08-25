@@ -1,0 +1,86 @@
+weather_info:
+  card:
+    type: custom:button-card 
+    name: >
+      [[[
+        var temp = states['weather.home'].attributes.temperature;
+        return (temp) + ' °C';
+      ]]]
+    icon: >
+      [[[
+        if (states['weather.home'].state == 'cloudy')
+          return 'mdi:weather-cloudy';
+        else if (states['weather.home'].state == 'rainy')
+          return 'mdi:weather-rainy';
+        else if (states['weather.home'].state == 'fog')
+          return 'mdi:weather-fog';
+        else if (states['weather.home'].state == 'hail')
+          return 'mdi:weather-hail';
+        else if (states['weather.home'].state == 'sunny')
+          return 'mdi:weather-sunny';
+        else if (states['weather.home'].state == 'pouring')
+          return 'mdi:weather-pouring';
+        else if (states['weather.home'].state == 'clear-night')
+          return 'mdi:weather-night';
+        else if (states['weather.home'].state == 'partlycloudy')
+          return 'mdi:weather-partly-cloudy';
+        else
+          return 'mdi:alert-circle-outline';        
+      ]]]    
+    entity: "[[entity_id]]"
+    show_state: true
+    styles:    
+      card:         
+        - background-color: transparent
+        - box-shadow: none
+        - margin: 0px
+        - padding: 0px
+      grid:
+        - grid-template-areas: '"i s n"'
+        - grid-template-columns: min-content min-content
+      img_cell:
+        - width: 40px
+        - justify-self: start   
+        - padding-right: 8px
+      icon:
+        - width: 24px
+        - padding-left: 8px
+      name:
+        - justify-self: start
+        - padding-left: 8px
+        
+day_info:
+  card:
+    type: custom:button-card 
+    icon: '[[icon]]' 
+    entity: '[[entity_id]]'
+    name: '[[name]]'
+    show_state: true
+    show_name: false
+    styles:    
+      card:         
+        - background-color: transparent
+        - box-shadow: none
+        - margin: 0px
+        - padding: 0px
+      grid:
+        - grid-template-areas: '"i s"'
+        - grid-template-columns: min-content min-content
+      img_cell:
+        - width: 40px
+        - justify-self: start   
+        - padding-right: 8px
+      icon:
+        - width: 24px
+        - padding-left: 8px
+      state:
+        - justify-self: start
+
+
+        
+      
+        
+
+
+        
+      

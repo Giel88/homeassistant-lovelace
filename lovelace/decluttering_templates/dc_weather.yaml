@@ -1,0 +1,55 @@
+dc_weather:
+  card:
+    type: custom:button-card 
+    name: >
+      [[[
+        var temp = states['weather.home'].attributes.temperature;
+        return (temp) + ' °C';
+      ]]]
+    icon: >
+      [[[
+        if (states['weather.home'].state == 'cloudy')
+          return 'mdi:weather-cloudy';
+        else if (states['weather.home'].state == 'rainy')
+          return 'mdi:weather-rainy';
+        else if (states['weather.home'].state == 'fog')
+          return 'mdi:weather-fog';
+        else if (states['weather.home'].state == 'hail')
+          return 'mdi:weather-hail';
+        else if (states['weather.home'].state == 'sunny')
+          return 'mdi:weather-sunny';
+        else if (states['weather.home'].state == 'pouring')
+          return 'mdi:weather-pouring';
+        else if (states['weather.home'].state == 'clear-night')
+          return 'mdi:weather-night';
+        else if (states['weather.home'].state == 'partlycloudy')
+          return 'mdi:weather-partly-cloudy';
+        else
+          return 'mdi:alert-circle-outline';        
+      ]]]    
+    entity: "[[entity_id]]"
+    show_state: true
+    tap_action:
+      action: navigate
+      navigation_path: '[[name]]'  
+    styles:    
+      card:
+        - padding: 16px
+        - height: 75px
+      grid:
+        - grid-template-areas: '"i s n"'
+        - grid-template-columns: min-content min-content
+        - grid-template-rows: 1fr
+      img_cell:
+        - width: 40px
+        - justify-self: start   
+        - margin-right: 8px
+      icon:
+        - width: 24px
+      name:
+        - justify-self: end
+      state:
+        - justify-self: end
+
+        
+      

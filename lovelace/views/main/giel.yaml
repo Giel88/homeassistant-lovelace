@@ -1,0 +1,53 @@
+# lovelace_gen
+
+- title: Giel
+  visible: false
+  icon: mdi:account
+  path: Giel
+  cards:
+
+    - type: vertical-stack
+      cards:
+        
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 50%
+          justify_content: start
+          cards:
+            - type: custom:decluttering-card
+              template: dc_section
+              variables:
+                - name: Giel
+                - entity_id: person.giel_blankestijn
+                - back: dashboard
+                
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 100%
+          justify_content: start
+          cards:
+            - type: custom:vertical-stack-in-card
+              cards:            
+                - type: custom:decluttering-card 
+                  template: dc_entity
+                  variables:
+                    - entity_id: person.giel_blankestijn
+                    - name: Giel
+                    - entity_picture: /local/giel.jpg
+                    - show_entity_picture: true
+                    - show_icon: false
+                    - show_state: true
+                - type: history-graph
+                  entities:
+                   - person.giel_blankestijn
+               
+            - type: custom:decluttering-card 
+              template: dc_map
+              variables:
+                - entity_id: person.giel_blankestijn
+                - name: Giel
+                                        
+                             
+
+                   
+                      

@@ -1,0 +1,145 @@
+# lovelace_gen
+
+- title: Living room
+  icon: mdi:sofa
+  path: livingroom
+  visible: false  
+  cards:
+    
+    - type: vertical-stack
+      cards:
+    
+        - type: custom:layout-card
+          layout: horizontal
+          column_width: 50%
+          justify_content: start
+          cards:
+            - type: custom:decluttering-card
+              template: dc_section
+              variables:
+                - name: Living room
+                - back: dashboard
+                
+        - type: custom:mini-graph-card
+          entities:
+            - entity: sensor.humidity
+              color: "#6236FF"
+              name: Humidity
+              show_state: true
+            - entity: sensor.motion_sensor_temperature
+              color: "#FA6400"
+              name: Temperature
+              show_state: true              
+          show:
+            fill: false
+            state: true
+            legend: false
+          line_width: 2
+          name: Temperature & Humidity  
+          debug_cardmod: true      
+          align_icon: left
+          align_header: left
+          icon: far:thermometer-half
+          style: |
+            ha-card {
+              background: transparent;
+              box-shadow: none;
+              padding-top: 56px !important;
+            }
+            .header {
+              padding-bottom: 8px !important;
+            }
+            .graph {
+              padding: 0px
+            }
+            .states {
+              padding-bottom: 0px;
+              justify-content: start !important;
+            }            
+            .state__value {
+              font-size: 24px !important;
+              font-weight: 500 !important;              
+            }
+            .state__uom {
+              font-size: 24px !important;
+              font-weight: 500 !important;
+              margin-top: 0px !important;
+              line-height: 1.2em !important;
+              opacity: 1 !important;              
+            }
+
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Activities            
+    
+        - type: custom:swipe-card
+          card_width: '120px'
+          parameters:
+            centeredSlides: false
+            slidesPerView: 'auto'
+            spaceBetween: 8
+            slidesOffsetBefore: 16
+          cards:                  
+    
+            - type: custom:decluttering-card
+              template: dc_activity
+              variables:
+                - entity_id: input_boolean.harmony_television
+                - name: TV
+                - icon: far:tv
+                - icon_offset: 0           
+    
+            - type: custom:decluttering-card
+              template: dc_activity
+              variables:
+                - entity_id: input_boolean.harmony_xbox_one
+                - name: Xbox one
+                - icon: fab:xbox
+                - icon_offset: 0
+    
+            - type: custom:decluttering-card
+              template: dc_activity
+              variables:
+                - entity_id: input_boolean.harmony_radio
+                - name: Radio
+                - icon: far:radio
+                - icon_offset: 0          
+                
+            - type: custom:decluttering-card
+              template: dc_activity
+              variables:
+                - entity_id: input_boolean.harmony_listen_to_music
+                - name: Record player
+                - icon: far:record-vinyl
+                - icon_offset: 0
+                
+        - type: custom:decluttering-card
+          template: title
+          variables:
+            - title: Lights
+            
+        - type: entities
+          show_header_toggle: false
+          entities:                
+            - entity: light.linksvoor
+              icon: far:lamp
+            - entity: light.midden
+              icon: far:lamp
+            - entity: light.rechtsvoor
+              icon: far:lamp-floor
+            - entity: light.rechtsachter
+              icon: far:lamp-desk
+            - entity: light.aanrecht
+              icon: far:light-ceiling
+            - entity: light.keuken
+              icon: far:light-ceiling
+            - entity: light.eettafel
+              icon: far:light-ceiling
+          style: |
+            ha-card {
+              background: transparent;
+              box-shadow: none;
+            }                    
+                            
+        

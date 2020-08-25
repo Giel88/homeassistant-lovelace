@@ -1,0 +1,75 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  customize: !include_dir_merge_named configs/customize/
+
+http:
+  base_url: !secret base_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+hacs:
+  token: !secret hacs_token
+  
+weather:
+  - platform: darksky
+    api_key: !secret darksky_API 
+
+lovelace_gen:
+
+speedtestdotnet:
+  server_id: 11365
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload    
+    
+lovelace:
+  mode: yaml
+  resources: !include_dir_list lovelace/resources
+  dashboards:
+    lovelace-home:
+      mode: yaml
+      title: Dashboard
+      icon: mdi:home
+      show_in_sidebar: true
+      filename: lovelace-main.yaml
+    lovelace-settings:
+      mode: yaml
+      title: Settings
+      icon: mdi:cog
+      show_in_sidebar: true
+      filename: lovelace-settings.yaml      
+  
+  
+shell_command:
+  ha_start: !secret curl
+  
+frontend:
+  themes: !include_dir_merge_named themes
+  
+light: !include_dir_merge_list configs/light_groups/
+group: !include_dir_merge_named configs/groups/
+automation: !include_dir_merge_list includes/automations/
+script: !include_dir_merge_named includes/scripts/
+device_tracker: !include_dir_merge_list configs/device_trackers/
+remote: !include_dir_merge_list configs/remotes/
+sensor: !include_dir_merge_list configs/sensors/
+input_boolean: !include_dir_merge_named configs/boolean/
+input_select: !include_dir_merge_named configs/input_select/
+input_number: !include_dir_merge_named configs/input_number/
+#zone: !include_dir_merge_list configs/zones/
+person: !include_dir_merge_list configs/persons/
+media_player: !include_dir_merge_list configs/media_players/
+var: !include_dir_merge_named configs/variables/
+spotify: !include_dir_merge_named configs/spotify/
+vacuum: !include_dir_merge_list configs/vacuums/
+fan: !include_dir_merge_list configs/fans/
